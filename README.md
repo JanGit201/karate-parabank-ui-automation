@@ -34,3 +34,22 @@ karate-parabank-ui-automation/
 ├── .gitignore                         # Excludes local targets and metadata from Git
 └── pom.xml                            # Project dependencies and build management
 ```
+---
+
+## 📝 Sample UI Test Scenario
+
+Below is an example demonstrating how a ParaBank login validation scenario is structured within this framework:
+
+```gherkin
+Feature: ParaBank User Authentication
+
+  Background:
+    * configure driver = { type: 'chrome' }
+
+  Scenario: Verify successful user login with valid credentials
+    Given driver 'https://parabank.parasoft.com/parabank/index.htm'
+    And input("//input[@name='username']", 'john_doe')
+    And input("//input[@name='password']", 'Password123')
+    When click("//input[@value='Log In']")
+    Then waitForText('#leftPanel', 'Welcome John Doe')
+```
